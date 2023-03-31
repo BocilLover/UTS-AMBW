@@ -2,7 +2,7 @@ self.addEventListener('install', function(event) {
   console.log('[Service Worker] Installing Service Worker ...', event);
   self.skipWaiting(); //PENTING bila ada versi baru!!
   event.waitUntil(
-    caches.open('cachePWA')
+    caches.open('test')
       .then(function(cache) {
         console.log('[Service Worker] Precaching App Shell');
         cache.addAll([
@@ -24,7 +24,7 @@ self.addEventListener('activate', function(event) {
     caches.keys()
       .then(function(keyList) {
         return Promise.all(keyList.map(function(key) {
-          if (key !== 'cachePWA' && key !== 'cachePWA') {
+          if (key !== 'test' && key !== 'test') {
             console.log('[Service Worker] Removing old cache.', key);
             return caches.delete(key);
           }
@@ -36,7 +36,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.open('cachePWA')
+    caches.open('test')
       .then(function(cache) {
         return fetch(event.request)
           .then(function(res) {
