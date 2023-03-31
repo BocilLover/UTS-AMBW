@@ -24,7 +24,7 @@ self.addEventListener('activate', function(event) {
     caches.keys()
       .then(function(keyList) {
         return Promise.all(keyList.map(function(key) {
-          if (key !== 'test' && key !== 'test') {
+          if (key !== CACHE_STORAGE_ALPHA && key !== CACHE_STORAGE_BETA) {
             console.log('[Service Worker] Removing old cache.', key);
             return caches.delete(key);
           }
@@ -36,7 +36,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.open('test')
+    caches.open(CACHE_STORAGE_BETA)
       .then(function(cache) {
         return fetch(event.request)
           .then(function(res) {
