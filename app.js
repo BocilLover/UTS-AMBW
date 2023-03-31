@@ -1,5 +1,5 @@
 var title = document.querySelector('.title');
-navigator.serviceWorker.register('/sw.js');
+navigator.serviceWorker.register('/serviceworker.js');
 
 
 var deferredPrompt;
